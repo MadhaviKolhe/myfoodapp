@@ -3,7 +3,7 @@ export const listMenu= () => (dispatch) =>{
     .then(response=> response.json())
     .then(data=> dispatch({type: 'GET_LIST_MENU',payload: data}) )
 }
-export const addMenu = (data) => {
+export const addmenu = (data) => {
     return {
         type: 'ADD_MENU',
         payload: data
