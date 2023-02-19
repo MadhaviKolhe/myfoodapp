@@ -1,5 +1,5 @@
 export const listMenu= () => (dispatch) =>{
-    fetch('http://localhost:8383/api/menu/allmenu')
+    fetch('http://localhost:8585/api/menu/allmenu')
     .then(response=> response.json())
     .then(data=> dispatch({type: 'GET_LIST_MENU',payload: data}) )
 }

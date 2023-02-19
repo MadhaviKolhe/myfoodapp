@@ -12,6 +12,7 @@ export class Login extends Component {
   render() {
     return (
       <div>
+        <div className="row-1">
         <div className="row">
           <div className="col-sm-3"></div>
           <div className="col-sm-6">
@@ -47,6 +48,7 @@ export class Login extends Component {
           </div>
           <div className="col-sm-3"></div>
         </div>
+      </div>
       </div>
     );
   }

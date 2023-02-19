@@ -45,7 +45,7 @@ export default class SignUp  extends Component{
                         onChange={this.changeHandler} />
                         <span style={{ color : 'red'}}>{this.state.errors['password']}</span>
                 <br /><br />
-                <button onClick={this.onSignUp}>Sign Up</button>
+                <button className="btn-1" onClick={this.onSignUp}>Sign Up</button>
             </div>
         );
     }

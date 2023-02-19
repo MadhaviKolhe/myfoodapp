@@ -1,58 +1,53 @@
 import axios from "axios";
 import { Component } from "react";
 import { connect } from "react-redux";
-import {listRestaurant,addRestaurant} from '../../store/action/restaurant';
-import menu from "../../store/reducer/menu";
+import { listFoodItem } from "../../store/action/fooditem";
+// import { addFoodItem } from "../../store/action/fooditem";
+import { addFoodItem } from "../../store/action/fooditem";
 
-export class AddMenu extends Component{
+
+export class AddFoodItem extends Component{
 
     constructor(props) {
         super(props);
     
         this.state = {
-            menu:{
+            foodItem:{
                 // id:'',
                 name: ''
                
             },
             errors: {},
             msg: '',
-            // menus:[]
+            // foodItems:[]
         };
       }
 
-    componentDidMount(){
-        //fetch all menus: call action
-        //this.props.listMenu();
-    }  
+    // componentDidMount(){
+    //     //fetch all menus: call action
+    //     this.props.listFoodItem();
+    // }  
 
     render(){
         return(
             <div>
             <div className="card">
-              <h5 className="card-header">Add Menu</h5>
+              {/* <h5 className="card-header">Add FoodItemList</h5> */}
               <div className="card-body">
-                <h5 className="card-title">Enter Menu Info: </h5>
+                <h5 className="card-title">Enter FoodItem Info: </h5>
                 <p className="card-text">
                 <span>{this.state.msg}</span> <br />
 
-                {/* <label>Menu Id: </label>
-                   <input type="number" 
-                            name="id"
-                            value={this.state.menu.id}
-                            onChange={this.changeHandler} />
-                            <span style={{ color : 'red'}}>{this.state.errors['id']}</span>
-                    <br /><br /> */}
 
-                   <label>Menu Name: </label>
+                   <label>FoodItem Name: </label>
                    <input type="text" 
                             name="name"
-                            value={this.state.menu.name}
+                            value={this.state.foodItem.name}
                             onChange={this.changeHandler} />
                             <span style={{ color : 'red'}}>{this.state.errors['name']}</span>
                     <br /><br />
 
-                    <button onClick={this.onAdd} className="btn btn-primary">Add Menu</button>
+                    <button onClick={this.onAdd} className="btn btn-primary">Add FoodItem</button>
                 </p>
                  
               </div>
@@ -63,19 +58,20 @@ export class AddMenu extends Component{
 
     changeHandler= (event) =>{
         this.setState({
-            menu: {
-                ...this.state.menu, 
+            foodItem: {
+                ...this.state.foodItem, 
+                // [event.target.foodItem] : event.target.value
                 [event.target.name] : event.target.value
             }
         });
 }
 
-onAdd = ()=>{
+onAdd  = async ()=>{
     /* Validate User inputs */
     if(this.handleValidation()){
-        console.log(this.state.menu);
+        console.log(this.state.foodItem);
         /* Call the API */
-       this.postMenu(this.state.menu);
+       this.postFoodItem(this.state.foodItem);
     }
     else{
         /* Display error messages */
@@ -85,7 +81,7 @@ onAdd = ()=>{
 
 handleValidation(){
     // let id = this.state.menu.id;
-    let name = this.state.menu.name;
+    let name = this.state.foodItem.name;
     
     let tempErrors={}
     let formValid = true; 
@@ -94,7 +90,7 @@ handleValidation(){
 
     if(!name){ //If name is not given
         formValid = false;
-        tempErrors['name']='Menu Name cannot be empty';
+        tempErrors['name']='FoodItem Name cannot be empty';
     }
     
     this.setState({
@@ -104,24 +100,23 @@ handleValidation(){
     return formValid; 
 }
 
-async postMenu(menu){
-    // let menu = {
+async postFoodItem(foodItem){
+    // let foodItem = {
     //     // id:e.id,
     //     name: e.name,
-        
     try {
-        const response = axios.post("http://localhost:8585/api/menu/add/", menu);
+        const response = axios.post("http://localhost:8585/add", foodItem);
         const data = (await response).data;
         console.log('API success');
         console.log(data);
         this.setState({
             msg: data.msg
         })
-        this.props.addMenu(data);
+        this.props.addFoodItem(data);
       } catch (error) {
         console.log(error)
         this.setState({
-            msg: 'Operation Failed'
+            msg: 'Food Item added'
         })
       }
 }
@@ -130,8 +125,8 @@ async postMenu(menu){
 
 function mapStateToProps(state){
     return {
-        rest : []
+        // rest : []
     }    
 }
 
-export default connect(mapStateToProps, {})(AddMenu); 
+export default connect(mapStateToProps, {})(AddFoodItem); 

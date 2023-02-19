@@ -36,6 +36,26 @@
     transform: rotate(360deg);
   }
 }
-.employee-sidebar{
+.fooditem-sidebar{
   border: 0px solid;
 }
+
+.navbar-nav{
+  background-color: lightskyblue;
+}
+.navbar-brand{
+  background-color: #61dafb;
+}
+
+/* body{
+  background-image:url(././components/fast-food-delivery-app-on-a-smartphone-with-delivery-man-on-a-scooter-how-to-order-food-online-TAWXP1.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+.btn-1{
+  background-color: rgba(20, 27, 94, 0.295);
+  border-radius: 3rem;
+}
+
+
+
